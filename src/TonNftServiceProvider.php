@@ -7,6 +7,7 @@ use Karakushan\TonNft\Commands\SaleAnalytics;
 use Karakushan\TonNft\Commands\SaleAnalyticsCollection;
 use Karakushan\TonNft\Commands\SaleAnalyticsNft;
 use Karakushan\TonNft\Commands\UpdateNftIndex;
+use Karakushan\TonNft\Commands\UpdateNftMeta;
 
 class TonNftServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,8 @@ class TonNftServiceProvider extends ServiceProvider
                 SaleAnalytics::class,
                 SaleAnalyticsCollection::class,
                 SaleAnalyticsNft::class,
-                UpdateNftIndex::class
+                UpdateNftIndex::class,
+                UpdateNftMeta::class
             ]);
         }
     }

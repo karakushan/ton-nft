@@ -28,7 +28,7 @@ class SaleAnalytics extends Command
 //            CollectionNft::where('collection_address', 'EQAaLmbRimQRuYx3UkLTv8TTgDfUL-ZIyiFCGeDb4lE06haT')
             CollectionNft::where(function ($q) {
                 $q->whereNull('analytics_updated_at');
-                $q->orWhere('analytics_updated_at', '<=', Carbon::now()->subDays(3)->toDateTimeString());
+                $q->orWhere('analytics_updated_at', '<=', Carbon::now()->subDays(1)->toDateTimeString());
             })
                 ->limit($this->argument('limit'))
                 ->get();

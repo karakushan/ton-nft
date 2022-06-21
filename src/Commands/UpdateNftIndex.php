@@ -47,9 +47,9 @@ class UpdateNftIndex extends Command
     function update_items($address)
     {
         $collection = Collection::where('contract_address', $address)->firstOrFail();
-        $this->info(sprintf('Обновляем NFT коллекции %s %s', $collection->title,$collection->contract_address));
-
-        $process = Process::fromShellCommandline('node node/UpdateNftIndex.js ' . $collection->contract_address);
+        $this->info(sprintf('Обновляем NFT коллекции %s %s', $collection->title, $collection->contract_address));
+        $arguments = [$collection->contract_address, $collection->nft_items()->count() ?? 0];
+        $process = Process::fromShellCommandline('node node/UpdateNftIndex.js ' . implode(' ',$arguments));
         $process->setTimeout(null);
         $process->run(function ($type, $buffer) {
             if (Process::ERR === $type) {

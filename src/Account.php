@@ -8,8 +8,16 @@ class Account
 {
     protected string $tonapi_base_url = 'https://tonapi.io/v1';
 
-    function getAccount($account)
+    /**
+     * Getting account information
+     *
+     * @param string $account
+     * @return mixed|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    function getAccount(string $account)
     {
+
         $content = null;
 
         try {
@@ -21,7 +29,7 @@ class Account
                 'delay' => 4000,
                 'verify' => false
             ]);
-            if ($response->getStatusCode() == 200) $content = json_decode((string)$response->getBody(),JSON_PRETTY_PRINT);
+            if ($response->getStatusCode() == 200) $content = json_decode((string)$response->getBody(), JSON_PRETTY_PRINT);
 
         } catch (\Exception $exception) {
             var_dump($exception->getMessage());

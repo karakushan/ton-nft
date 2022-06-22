@@ -28,8 +28,6 @@ class Nft
             return intval($item['transaction_id']['lt']);
         });
 
-        Storage::put('txs/' . $address . '--all.json', $transactions_all_sorts->toJson(JSON_PRETTY_PRINT));
-
         $txs = $transactions_all_sorts->filter(function ($item) use ($address) {
             return isset($item['in_msg']['account']['interfaces'])
                 && (in_array('nft_sale_get_gems', $item['in_msg']['account']['interfaces']) || in_array('nft_sale', $item['in_msg']['account']['interfaces']))

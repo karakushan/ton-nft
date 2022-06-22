@@ -38,7 +38,7 @@ class Transactions
 
         if ($response->ok()) {
             $json = $response->json();
-            $transactions = (array)$json['result'];
+            $transactions = isset($json['result']) ? (array)$json['result'] : [];
         } else {
             Log::channel('nft_analytics')
                 ->warning(sprintf('Ошибка при получении транзакций адреса %s', $address), (array)json_decode($response->body(), true));
@@ -77,6 +77,8 @@ class Transactions
 
             foreach ($txs as $tx) {
                 if (in_array($tx['transaction_id']['hash'], array_keys($total_txs))) continue;
+                if (is_array($tx['in_msg']['source'])) continue;
+
                 if ($getAccount) $tx['in_msg']['account'] = $nft_account->getAccount($tx['in_msg']['source']);
                 $total_txs[$tx['transaction_id']['hash']] = $tx;
             }

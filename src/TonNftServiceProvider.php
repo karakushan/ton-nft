@@ -5,6 +5,7 @@ namespace Karakushan\TonNft;
 use Illuminate\Support\ServiceProvider;
 use Karakushan\TonNft\Commands\SaleAnalytics;
 use Karakushan\TonNft\Commands\SaleAnalyticsCollection;
+use Karakushan\TonNft\Commands\SaleAnalyticsCollections;
 use Karakushan\TonNft\Commands\SaleAnalyticsNft;
 use Karakushan\TonNft\Commands\UpdateNftIndex;
 use Karakushan\TonNft\Commands\UpdateNftMeta;
@@ -26,6 +27,7 @@ class TonNftServiceProvider extends ServiceProvider
             $this->commands([
                 SaleAnalytics::class,
                 SaleAnalyticsCollection::class,
+                SaleAnalyticsCollections::class,
                 SaleAnalyticsNft::class,
                 UpdateNftIndex::class,
                 UpdateNftMeta::class

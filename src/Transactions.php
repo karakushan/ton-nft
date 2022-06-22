@@ -79,7 +79,10 @@ class Transactions
                 if (in_array($tx['transaction_id']['hash'], array_keys($total_txs))) continue;
                 if (is_array($tx['in_msg']['source'])) continue;
 
-                if ($getAccount) $tx['in_msg']['account'] = $nft_account->getAccount($tx['in_msg']['source']);
+                if ($getAccount) {
+                    $tx['in_msg']['account'] = $nft_account->getAccount($tx['in_msg']['source']);
+                    sleep(1);
+                }
                 $total_txs[$tx['transaction_id']['hash']] = $tx;
             }
 
